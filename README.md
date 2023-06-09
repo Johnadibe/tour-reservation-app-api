@@ -101,8 +101,6 @@ Edit `config/database.yml` with your database connection info. Run the foolowing
 ```sh
     rails db:create
     rails db:schema:load
-    rails db:seed
-
 ```
 
 ### Usage
