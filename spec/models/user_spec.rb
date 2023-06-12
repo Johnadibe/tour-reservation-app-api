@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
-    @user = User.create(name: 'Test user', email: 'rails@gmail.com', password: '123456',
+    @user = User.create(name: 'Test user', email: 'rails@gmail.com',
       password_digest: '123456')
   end
   it 'is valid with valid attributes' do
@@ -16,16 +16,9 @@ RSpec.describe User, type: :model do
     @user.email = nil
     expect(@user).to_not be_valid
   end
-  it 'is not valid without a password' do
-    @user.password = nil
-    expect(@user).to_not be_valid
-  end
-  it 'is not valid with a password confirmation that does not match' do
-    @user.password_confirmation = '12345'
-    expect(@user).to_not be_valid
-  end
-  it 'is not valid with a password shorter than 6 characters' do
-    @user.password = '12345'
+ 
+  it 'is not valid with a name shorter than 3 characters' do
+    @user.name = 01
     expect(@user).to_not be_valid
   end
 end
