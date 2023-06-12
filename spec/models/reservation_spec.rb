@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Reservation, type: :model do
-
   before(:each) do
     @user = User.create(name: 'Test user', email: 'rails@gmail.com',
-      password_digest: '123456')
-    @tour = Tour.create(name: 'Obudu tour', city: 'Ibom', price: 245.00, video: 'Do it now or die regretting', user_id: @user.id)
-    @reservation = Reservation.create(start_end: '12-02-2023', end_date: '12-08-2023', user_id: @user.id, tour_id: @tour.id)
+                        password_digest: '123456')
+    @tour = Tour.create(name: 'Obudu tour', city: 'Ibom', price: 245.00, video: 'Do it now or die regretting',
+                        user_id: @user.id)
+    @reservation = Reservation.create(start_end: '12-02-2023', end_date: '12-08-2023', user_id: @user.id,
+                                      tour_id: @tour.id)
   end
   it 'is valid with valid attributes' do
     expect(@reservation).to be_valid

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Tour, type: :model do
-  
   before(:each) do
     @user = User.create(name: 'Test user', email: 'rails@gmail.com',
-      password_digest: '123456')
-    @tour = Tour.create(name: 'Obudu tour', city: 'Ibom', price: 245.00, video: 'Do it now or die regretting', user_id: @user.id)
+                        password_digest: '123456')
+    @tour = Tour.create(name: 'Obudu tour', city: 'Ibom', price: 245.00, video: 'Do it now or die regretting',
+                        user_id: @user.id)
   end
   it 'is valid with valid attributes' do
     expect(@tour).to be_valid
