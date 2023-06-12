@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+    before_action :authenticate_user!
+    
     def jwt_key
         Rails.application.credentials.jwt_key
     end
@@ -16,4 +18,19 @@ class ApplicationController < ActionController::API
         end    
     end
 
+    def user_id
+        decoded_token.first["user_id"]
+    end
+
+    def current_user
+        user ||= User.find_by(id: user_id)
+    end
+
+    def is_logged_in?
+        !!current_user
+    end
+
+    def authenticate_user!
+        render json: { message: 'Please log in' }, status: :unauthorized unless is_logged_in?
+    end
 end
