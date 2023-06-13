@@ -18,7 +18,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def show
+  def get
+    user = User.find(params[:id])
+    if user
+        render json: user
+    else
+        render json: {error: "User could not be found."}
+    end
+  end
+
+  def me
     if logged_in?
         render json: current_user
     else
