@@ -1,7 +1,5 @@
 class Api::V1::ReservationsController < ApplicationController
   def index
-    authenticate_user!
-
     user = current_user
     @reservations = Reservation.includes(:tour).where(user_id: user.id)
   
@@ -19,6 +17,7 @@ class Api::V1::ReservationsController < ApplicationController
 
   def create
    @reservation = Reservation.new(reservation_params);
+    @reservation.user_id = current_user.id
 
    respond_to do |format|
    if @reservation.save
@@ -33,6 +32,6 @@ class Api::V1::ReservationsController < ApplicationController
   private 
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date)
+    params.require(:reservation).permit(:start_date, :end_date, :tour_id)
   end
 end

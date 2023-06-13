@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      
-      end
+      resources :users, only: [:create, :show, :index]
+      post "/login", to: "users#login"
+      get "/me", to: "users#me"
+      resources :reservation, only: [:create, :show, :index, :new]
     end
+  end
 end
