@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      
-      end
+      resources :user only: [:create, :show, :index]
+      post "/login", to: "users#authenticate"
+      get "/me", to: "users#me"
     end
+  end
 end
