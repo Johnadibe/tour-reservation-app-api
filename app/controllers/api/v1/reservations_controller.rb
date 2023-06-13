@@ -1,9 +1,12 @@
 class Api::V1::ReservationsController < ApplicationController
   def index
-    user = User.find_by(id: session[:user_id])
+    authenticate_user!
+
+    user = current_user
     @reservations = Reservation.includes(:tour).where(user_id: user.id)
+  
+    render json: @reservations
     # @reservation = Reservation.all
-    render json: @reservation
   end
   def show
     @reservation = Reservation.find_by(id: params[:id])
@@ -15,12 +18,16 @@ class Api::V1::ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.create(reservation_params)
-    if @reservation.save
-      redirect_to reservations_path
-    else
-      render :new
-    end
+   @reservation = Reservation.new(reservation_params);
+
+   respond_to do |format|
+   if @reservation.save
+    format.html { redirect_to api_v1_user_reservations_path, notice: 'Reservation was successfully created.' }
+    format.json { render json: @reservation, status: :created }
+   else 
+    format.html { render :new }
+    format.json { render json: @reservation.errors, status: :unprocessable_entity }
+   end
   end
 
   private 
