@@ -4,6 +4,6 @@ class Reservation < ApplicationRecord
 
   validates :tour_id, presence: true
   validates :user_id, presence: true
-  validates :start_date, presence: true
+  validates :start_end, presence: true
   validates :end_date, presence: true
 end
