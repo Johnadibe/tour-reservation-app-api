@@ -2,36 +2,37 @@ class Api::V1::ReservationsController < ApplicationController
   def index
     user = current_user
     @reservations = Reservation.includes(:tour).where(user_id: user.id)
-  
-    render json: @reservations
-    # @reservation = Reservation.all
-  end
-  def show
-    @reservation = Reservation.find_by(id: params[:id])
-    render json: @reservation
+    if @reservations.length == 0
+      render json: { error: "There are no reservations" }, status: :not_found
+    else
+      render json: @reservations
+    end
   end
 
-  def new
-    @reservation = Reservation.new
+  def show
+    @reservation = Reservation.find_by(id: params[:id])
+    if @reservation.nil?
+      render json: { error: "There is no reservation" }, status: :not_found
+    else
+    render json: @reservation
+    end
   end
 
   def create
-   @reservation = Reservation.new(reservation_params);
-    @reservation.user_id = current_user.id
-
-   respond_to do |format|
-   if @reservation.save
-    format.html { redirect_to api_v1_user_reservations_path, notice: 'Reservation was successfully created.' }
-    format.json { render json: @reservation, status: :created }
-   else 
-    format.html { render :new }
-    format.json { render json: @reservation.errors, status: :unprocessable_entity }
-   end
+    @user = current_user
+    p @user.id
+    @reservation = Reservation.create(reservation_params)
+    @reservation.user_id = @user.id
+    p @reservation
+    if @reservation.save
+      render json: @reservation, status: :created
+    else
+      render json: { error: "Unable to create reservation" }, status: :bad_request
+    end 
   end
 
   private 
-
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :tour_id)
+    params.require(:reservation).permit(:start_end, :end_date, :tour_id)
   end
 end
