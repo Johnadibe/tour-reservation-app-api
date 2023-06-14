@@ -14,6 +14,6 @@ class Tour < ApplicationRecord
   validates :video, presence: true
 
   def update_status
-    self.update_column(:status, true)
+    update_column(:status, true)
   end
 end
