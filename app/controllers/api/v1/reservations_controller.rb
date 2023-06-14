@@ -2,20 +2,12 @@ class Api::V1::ReservationsController < ApplicationController
   def index
     user = current_user
     @reservations = Reservation.includes(:tour).where(user_id: user.id)
-    if @reservations.empty?
-      render json: { error: 'There are no reservations' }, status: :not_found
-    else
-      render json: @reservations
-    end
+    render json: @reservations
   end
 
   def show
     @reservation = Reservation.find_by(id: params[:id])
-    if @reservation.nil?
-      render json: { error: 'There is no reservation' }, status: :not_found
-    else
-      render json: @reservation
-    end
+    render json: @reservation
   end
 
   def create
