@@ -1,4 +1,6 @@
 class Tour < ApplicationRecord
+  after_save :update_status
+
   has_one_attached :image
 
   belongs_to :user
@@ -10,4 +12,8 @@ class Tour < ApplicationRecord
   validates :city, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :video, presence: true
+
+  def update_status
+    self.update_column(:status, true)
+  end
 end
