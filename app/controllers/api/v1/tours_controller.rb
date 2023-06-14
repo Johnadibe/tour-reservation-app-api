@@ -17,4 +17,13 @@ class Api::V1::ToursController < ApplicationController
         end
     end
 
+    def show
+        tour = Tour.find(params[:id])
+        if tour
+          render json: tour
+        else
+          render json: { error: 'Tour could not be found.' }, status: :bad_request
+        end
+    end
+
 end
