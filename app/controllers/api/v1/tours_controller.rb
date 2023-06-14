@@ -37,4 +37,21 @@ class Api::V1::ToursController < ApplicationController
         end
     end
 
+    def update
+        @user = current_user
+        @tour = Tour.find(params[:id])
+        @tour.user_id = @user.id
+        if @tour.update(tour_params)
+          render json: @tour, notice: 'Tour updated successfully'
+        else
+          render json: { error: 'Something went wrong, Could not update Tour successfully' }, status: :bad_request
+        end
+      end
+    
+      private
+    
+      def tour_params
+        params.require(:tour).permit(:name, :city, :price, :video, :image)
+      end    
+
 end
