@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :show, :index]
       post "/login", to: "users#login"
       get "/me", to: "users#me"
+      resources :tours, except: [:new, :edit]
     end
   end
 end
