@@ -9,8 +9,8 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :show, :index]
       post "/login", to: "users#login"
       get "/me", to: "users#me"
-      resources :reservations, only: [:create, :show, :index]
       resources :tours, except: [:new, :edit]
+      resources :reservations, only: [:create, :show, :index]
     end
   end
 end
