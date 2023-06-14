@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Tour, type: :request do
+RSpec.describe User, type: :request do
   describe 'Post /create' do
     before(:each) do
        post '/api/v1/users', params: {
