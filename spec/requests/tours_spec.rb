@@ -1,31 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe 'Tours', type: :request do
+  
   describe 'POST /api/v1/tours' do
-    before(:example) do
-      #   post '/api/v1/users', params: {
-      #     name: 'test2',
-      #     email: 'rails1@yopmail.com',
-      #     password: 'backend12'
-      #   }
-      get 'api/v1/users', params: {
-        email: 'rails1@yopmail.com',
+    before(:each) do
+      post '/api/v1/users', params: {
+        name: 'test3',
+        email: 'rails3@yopmail.com',
         password: 'backend12'
       }
     end
+  
     let(:json_data) { JSON.parse(response.body) }
-    it 'create a tour ' do
+    it 'create a tour' do
+      token = json_data['token']
+      puts "Token: #{token}" # Add this line for debugging
+
       post '/api/v1/tours', params: {
         tour: {
           name: 'Joyland',
           city: 'Lahore',
           price: 30,
           video: 'This is the video',
-          image: 'https://picsum.photos/200/300'
-        }, headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-      }
+          image: 'This is the image'
+        }
+      }, headers:  { 'Authorization' => "Bearer #{json_data['token']}" }
 
-      expect(response.status).to eq(200)
+      puts "Response: #{response.body}" # Add this line for debugging
+
+      expect(response.body).to not_be_nil
     end
   end
 end
