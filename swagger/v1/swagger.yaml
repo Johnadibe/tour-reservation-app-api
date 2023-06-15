@@ -1,0 +1,107 @@
+---
+openapi: 3.0.1
+info:
+  title: TourX API V1 Guide
+  version: v1
+paths:
+  "/login":
+    post:
+      summary: create authentication
+      responses:
+        '200':
+          description: successful
+  "/users":
+    post:
+      summary: create user
+      responses:
+        '200':
+          description: successful
+    get:
+      summary: list users
+      responses:
+        '200':
+          description: successful
+  "/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show a specific user
+      operationId: showUser
+      responses:
+        '200':
+          description: Successful response
+  "/tours":
+    get:
+      summary: list tours
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create tour
+      responses:
+        '200':
+          description: successful
+  "/tours/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show a specific tour
+      operationId: showTour
+      responses:
+        '200':
+          description: Successful response
+    patch:
+      summary: update tour
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update tour
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete tour
+      responses:
+        '200':
+          description: successful
+  "/reservations":
+    get:
+      summary: list reservations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create reservation
+      responses:
+        '200':
+          description: successful
+  "/reservations/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show a specific reservation
+      operationId: showReservation
+      responses:
+        '200':
+          description: Successful response
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
