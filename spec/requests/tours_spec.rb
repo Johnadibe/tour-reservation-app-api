@@ -25,7 +25,6 @@ RSpec.describe 'Tours', type: :request do
         }
       }
       
-      
       expect(response.body).not_to be_nil
     end
     scenario 'checks the request when we are not passing the token' do
