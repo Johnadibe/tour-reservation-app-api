@@ -51,6 +51,20 @@ RSpec.describe 'Tours', type: :request do
         }
       }
       expect(response).not_to have_http_status(:ok)
-    end    
+    end
   end
-end
+  describe 'Get /post' do
+    scenario 'checking the get request' do
+      get "/api/v1/tours",  headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+      expect(response.status).to eq(200)
+    end 
+    scenario 'checking the get http request' do
+      get "/api/v1/tours",  headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+      expect(response).to have_http_status(:ok)
+    end 
+    scenario 'checking the get responce' do
+      get "/api/v1/tours",  headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+      expect(response.body).to eq("[]")
+    end 
+  end
+ end
