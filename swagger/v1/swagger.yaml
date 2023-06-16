@@ -70,11 +70,6 @@ paths:
       responses:
         '200':
           description: successful
-    delete:
-      summary: delete tour
-      responses:
-        '200':
-          description: successful
   "/reservations":
     get:
       summary: list reservations
