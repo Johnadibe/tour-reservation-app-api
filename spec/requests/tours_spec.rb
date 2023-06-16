@@ -21,7 +21,8 @@ RSpec.describe 'Tours', type: :request do
           city: 'Lahore',
           price: 30,
           video: 'This is the video',
-          image: 'This is the image'
+          image: 'This is the image',
+          des: "Just a small place to fun"
         }
       }
 
@@ -34,7 +35,8 @@ RSpec.describe 'Tours', type: :request do
           city: 'Lahore',
           price: 30,
           video: 'This is the video',
-          image: 'This is the image'
+          image: 'This is the image',
+          des: "Just a small place to fun"
         }
       }
       expect(response.status).to eq(401)
