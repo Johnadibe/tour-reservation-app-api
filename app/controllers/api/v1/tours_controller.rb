@@ -26,17 +26,6 @@ class Api::V1::ToursController < ApplicationController
     end
   end
 
-  def destroy
-    @user = current_user
-    @tour = Tour.find(params[:id])
-    @tour.user_id = @user.id
-    if @tour.destroy
-      render json: { id: @tour.id, status: :deleted, notice: 'Tour deleted successfully' }
-    else
-      render json: { error: 'Something went wrong, Could not delete Tour successfully' }, status: :bad_request
-    end
-  end
-
   def update
     @user = current_user
     @tour = Tour.find(params[:id])
