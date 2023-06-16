@@ -12,10 +12,10 @@ RSpec.describe 'Reservations', type: :request do
   let(:json_data) { JSON.parse(response.body) }
 
   describe 'POST /api/v1/reservations' do
-    scenario 'create a tour' do
+    scenario 'create a reservation' do
       token = json_data['token']
 
-      post "/api/v1/tours?token=#{token}", params: {
+      post "/api/v1/reservations?token=#{token}", params: {
         reservation: {
           start_date: '12/05/2023',
           end_date: '13/07/2023',
