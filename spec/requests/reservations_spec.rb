@@ -18,7 +18,7 @@ RSpec.describe 'Reservations', type: :request do
       post "/api/v1/reservations?token=#{token}", params: {
         reservation: {
           start_date: '12/05/2023',
-          end_date: '13/07/2023',
+          end_date: '13/07/2023'
         }
       }
 
@@ -27,8 +27,8 @@ RSpec.describe 'Reservations', type: :request do
     scenario 'checks the request when we are not passing the token' do
       post '/api/v1/reservations', params: {
         reservation: {
-            start_date: '12/05/2023',
-            end_date: '13/07/2023',
+          start_date: '12/05/2023',
+          end_date: '13/07/2023'
         }
       }
       expect(response.status).to eq(401)
@@ -36,8 +36,8 @@ RSpec.describe 'Reservations', type: :request do
     scenario 'checks the request ' do
       post '/api/v1/reservations', params: {
         tour: {
-            start_date: '12/05/2023',
-            end_date: '13/07/2023',
+          start_date: '12/05/2023',
+          end_date: '13/07/2023'
         }
       }
       expect(response).not_to have_http_status(:ok)
