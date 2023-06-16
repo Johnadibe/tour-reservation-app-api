@@ -43,4 +43,18 @@ RSpec.describe 'Reservations', type: :request do
       expect(response).not_to have_http_status(:ok)
     end
   end
+  describe 'Get /post' do
+    scenario 'checking the get request' do
+      get '/api/v1/reservations', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+      expect(response.status).to eq(200)
+    end
+    scenario 'checking the get http request' do
+      get '/api/v1/reservations', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+      expect(response).to have_http_status(:ok)
+    end
+    scenario 'checking the get response' do
+      get '/api/v1/reservations', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+      expect(response.body).to eq('[]')
+    end
+  end
 end
