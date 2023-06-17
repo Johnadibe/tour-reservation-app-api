@@ -5,11 +5,9 @@ class Tour < ApplicationRecord
   scope :with_attached_image, -> { includes(image_attachment: :blob) }
 
   def image_url
-      if image.attached?
-     Rails.application.routes.url_helpers.rails_blob_url(image, only_path: true)
-     else 
-        nil
-    end
+    return unless image.attached?
+
+    Rails.application.routes.url_helpers.rails_blob_url(image, only_path: true)
   end
 
   belongs_to :user
@@ -25,5 +23,4 @@ class Tour < ApplicationRecord
   def update_status
     update_column(:status, true)
   end
-
 end
