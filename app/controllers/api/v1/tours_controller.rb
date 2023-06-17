@@ -2,8 +2,8 @@ class Api::V1::ToursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @tours = Tour.all
-    render json: @tours
+    tours = Tour.with_attached_image.all
+    render json: tours, methods: :image_url
   end
 
   def create
@@ -40,6 +40,6 @@ class Api::V1::ToursController < ApplicationController
   private
 
   def tour_params
-    params.require(:tour).permit(:name, :city, :price, :video, :image)
+    params.permit(:name, :city, :price, :video, :image, :des)
   end
 end
