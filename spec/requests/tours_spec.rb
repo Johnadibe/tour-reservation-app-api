@@ -28,19 +28,28 @@ RSpec.describe 'Tours', type: :request do
 
       expect(response.body).not_to be_nil
     end
-    scenario 'checks the request when we are not passing the token' do
-      post '/api/v1/tours', params: {
-        tour: {
-          name: 'Joyland',
-          city: 'Lahore',
-          price: 30,
-          video: 'This is the video',
-          image: 'This is the image',
-          des: 'Just a small place to fun'
-        }
-      }
-      expect(response.status).to eq(401)
+
+    path '/tours' do
+      get 'list tours' do
+        tags 'Tours'
+        produces "application/json"
+        response '201', 'user created' do
+          # let! (:user) {User.create(username: 'mp', authentication_token: 'mptoken')}
+          # run_test!
+          scenario 'checking the get request' do
+            get '/api/v1/tours', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+            expect(response.status).to eq(200)
+          end
+          end
+        end
+  
+        response '422', 'invalid request' do
+          let(:user) { { username: 'foo' } }
+          run_test!
+        end
+      end
     end
+    
     scenario 'checks the request ' do
       post '/api/v1/tours', params: {
         tour: {
