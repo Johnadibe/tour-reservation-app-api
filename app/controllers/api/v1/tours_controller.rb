@@ -2,8 +2,8 @@ class Api::V1::ToursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @tours = Tour.all
-    render json: @tours
+    tours = Tour.with_attached_image.where(status: false)
+    render json: tours, methods: :image_url
   end
 
   def create
@@ -26,17 +26,6 @@ class Api::V1::ToursController < ApplicationController
     end
   end
 
-  def destroy
-    @user = current_user
-    @tour = Tour.find(params[:id])
-    @tour.user_id = @user.id
-    if @tour.destroy
-      render json: { id: @tour.id, status: :deleted, notice: 'Tour deleted successfully' }
-    else
-      render json: { error: 'Something went wrong, Could not delete Tour successfully' }, status: :bad_request
-    end
-  end
-
   def update
     @user = current_user
     @tour = Tour.find(params[:id])
@@ -51,6 +40,6 @@ class Api::V1::ToursController < ApplicationController
   private
 
   def tour_params
-    params.require(:tour).permit(:name, :city, :price, :video, :image)
+    params.permit(:name, :city, :price, :video, :image, :des)
   end
 end

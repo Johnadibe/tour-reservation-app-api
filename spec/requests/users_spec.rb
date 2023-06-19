@@ -13,7 +13,6 @@ RSpec.describe User, type: :request do
     scenario 'creates a user' do
       expect(response.status).to eq(200)
       expect(response).to have_http_status(:ok)
-      # json = JSON.parse(response.body).deep_symbolize_keys
     end
     scenario 'checks the user body' do
       expect(json_data['data']['name']).to eq('test2')
