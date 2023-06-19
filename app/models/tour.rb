@@ -1,6 +1,4 @@
 class Tour < ApplicationRecord
-  after_save :update_status
-
   has_one_attached :image
   scope :with_attached_image, -> { includes(image_attachment: :blob) }
 
@@ -15,12 +13,9 @@ class Tour < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :users
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :city, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :video, presence: true
 
-  def update_status
-    update_column(:status, true)
-  end
 end
