@@ -1,5 +1,5 @@
 class Api::V1::ToursController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index indexAll]
+  skip_before_action :authenticate_user!, only: %i[index index_all]
 
   def index
     tours = Tour.with_attached_image.where(status: false)
