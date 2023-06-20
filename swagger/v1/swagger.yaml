@@ -26,20 +26,18 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 89
+              - id: 101
                 name: Tour 1
                 city: Canada 1
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 929
-                created_at: '2023-06-20T19:09:52.273Z'
-                updated_at: '2023-06-20T19:09:52.286Z'
+                user_id: 993
+                created_at: '2023-06-20T19:45:16.269Z'
+                updated_at: '2023-06-20T19:45:16.282Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                  a possimus impedit modi quia? Incidunt quod esse quibusdam pariatur
-                  facilis dolorem odio voluptatibus nesciunt quam repudiandae. Perspiciatis
-                  nulla magnam quos?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--afe829087115b15afe41d3a83eae413506301aeb/dominos.jpg"
+                  a possimus impedit modi quia? Incidunt?
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ba374f1c35a168b398791e31942ddcfdc6987e1e/dominos.jpg"
     post:
       summary: Create tour
       tags:
@@ -55,18 +53,16 @@ paths:
           content:
             application/json:
               example:
-                id: 90
+                id: 102
                 name: Joyland
                 city: Lahore
                 price: '30.0'
                 video: This is the video
                 status: false
-                user_id: 930
-                created_at: '2023-06-20T19:09:52.316Z'
-                updated_at: '2023-06-20T19:09:52.316Z'
+                user_id: 994
+                created_at: '2023-06-20T19:45:16.315Z'
+                updated_at: '2023-06-20T19:45:16.315Z'
                 des: Just a small place to fun
-        '401':
-          description: Unauthorized
         '400':
           description: Bad Request
       requestBody:
@@ -93,14 +89,75 @@ paths:
               - city
               - price
               - des
-  "/tours_all":
+  "/tours-all":
     get:
-      summary: list all tours including deleted tours
+      summary: list all tours including removed tours
       tags:
       - Tours
       responses:
         '200':
           description: Successful
+          content:
+            application/json:
+              example:
+              - id: 56
+                name: Obudu tour
+                city: Ibom
+                price: '245.0'
+                video: Do it now or die regretting
+                status: false
+                user_id: 289
+                created_at: '2023-06-20T14:00:22.085Z'
+                updated_at: '2023-06-20T14:00:22.085Z'
+                des: 
+                image_url: 
+              - id: 103
+                name: Tour 2
+                city: Canada 2
+                price: '245.0'
+                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                status: false
+                user_id: 997
+                created_at: '2023-06-20T19:45:16.334Z'
+                updated_at: '2023-06-20T19:45:16.337Z'
+                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                  a possimus impedit modi quia? Incidunt?
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1f9f02f5591e3538445f6e01d48d6b2a8a293352/dominos.jpg"
+  "/tours/{id}":
+    get:
+      summary: Show tour
+      tags:
+      - Tours
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example:
+                id: 104
+                name: Tour 3
+                city: Canada 3
+                price: '245.0'
+                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                status: false
+                user_id: 999
+                created_at: '2023-06-20T19:45:16.358Z'
+                updated_at: '2023-06-20T19:45:16.364Z'
+                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                  a possimus impedit modi quia? Incidunt?
+        '401':
+          description: Unauthorized
   "/users":
     post:
       summary: Create user
@@ -172,9 +229,9 @@ paths:
           content:
             application/json:
               example:
-                id: 939
-                name: user 11
-                email: user-test11@gmail.com
+                id: 1006
+                name: user 14
+                email: user-test14@gmail.com
         '401':
           description: Unauthorized
 servers:

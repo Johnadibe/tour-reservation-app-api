@@ -6,25 +6,25 @@ RSpec.describe User, type: :request do
   let!(:access_token) { generate_token(user1) }
   let!(:Authorization) { access_token.to_s }
 
-  # create user 
-  path "/users" do
-    post("Create user") do
+  # create user
+  path '/users' do
+    post('Create user') do
       tags 'Users'
       consumes 'application/json'
-      produces "application/json"
-      parameter name: :user, in: :body, schema:{
+      produces 'application/json'
+      parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
           name: { type: :string },
           email: { type: :string },
           password: { type: :string }
         },
-        required: [ 'name', 'email', 'password' ]
+        required: %w[name email password]
       }
       response '201', 'user created' do
         let(:user) { { name: 'test2', email: 'rails2@yopmail.com', password: 'backend12' } }
 
-        run_test! do |response| 
+        run_test! do |response|
           data = JSON.parse(response.body)
           expect(data['data']['name']).to eq('test2')
           expect(data['data']['email']).to eq('rails2@yopmail.com')
@@ -34,25 +34,25 @@ RSpec.describe User, type: :request do
     end
   end
 
-  # login user 
-  path "/login" do
-    post("Authenticate user") do
-      tags "Users"
+  # login user
+  path '/login' do
+    post('Authenticate user') do
+      tags 'Users'
       consumes 'application/json'
-      produces "application/json"
+      produces 'application/json'
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
           email: { type: :string },
           password: { type: :string }
         },
-        required: [ 'email', 'password' ]
+        required: %w[email password]
       }
       response '200', 'user authenticated' do
         # login credentials
         let(:user) { { email: 'test2@gmail.com', password: '123456' } }
 
-        run_test! do |response| 
+        run_test! do |response|
           data = JSON.parse(response.body)
           expect(data['token']).not_to be_nil
         end
@@ -62,8 +62,8 @@ RSpec.describe User, type: :request do
         # login credentials
         let(:user) { { email: 'wrongemail', password: 'invalidpassord' } }
 
-        run_test! do |response| 
-          data = JSON.parse(response.body)
+        run_test! do |response|
+          JSON.parse(response.body)
           expect(response).to have_http_status(:unauthorized)
           expect(response.body).to include('error')
         end
@@ -72,15 +72,15 @@ RSpec.describe User, type: :request do
   end
 
   # fetch user by id
-  path "/users/{id}" do
-    get("Get user by id") do
+  path '/users/{id}' do
+    get('Get user by id') do
       produces 'application/json'
-      tags "Users"
+      tags 'Users'
       parameter name: 'id', in: :path, type: :string, description: 'id'
       parameter name: :Authorization, in: :header, type: :string
       response(200, 'Successful') do
         let(:id) { user1.id }
-        
+
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -95,9 +95,9 @@ RSpec.describe User, type: :request do
         end
       end
 
-      response(401, "Unauthorized") do
+      response(401, 'Unauthorized') do
         let(:id) { user1.id }
-        let!(:Authorization) { "access_token.to_s" }
+        let!(:Authorization) { 'access_token.to_s' }
         run_test!
       end
     end

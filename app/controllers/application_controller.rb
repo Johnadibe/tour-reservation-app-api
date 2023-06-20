@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   include JsonWebToken
-  
+
   before_action :authenticate_user!
 
   def user_id
