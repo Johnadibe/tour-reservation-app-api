@@ -98,6 +98,18 @@
     ui.initOAuth(oauthConfigObject);
   }
 </script>
+<script>
+  (function () {
+  window.addEventListener("load", function () {
+      setTimeout(function () {
+
+          var logo = document.getElementsByClassName('link');
+
+          logo[0].children[0].alt = "My API";
+          logo[0].children[0].src = "/logo.png";
+      });
+  }); })();
+</script>
 </body>
 
 </html>

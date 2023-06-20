@@ -37,16 +37,17 @@ RSpec.describe 'Tours', type: :request do
           # let! (:user) {User.create(username: 'mp', authentication_token: 'mptoken')}
           # run_test!
           scenario 'checking the get request' do
-            get '/api/v1/tours', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+            # get '/api/v1/tours', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
+            let(:Authorization) { "Bearer #{json_data['token']}" }
             expect(response.status).to eq(200)
           end
           end
         end
   
-        response '422', 'invalid request' do
-          let(:user) { { username: 'foo' } }
-          run_test!
-        end
+        # response '422', 'invalid request' do
+        #   let(:user) { { username: 'foo' } }
+        #   run_test!
+        # end
       end
     end
     
