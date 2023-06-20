@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_093521) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_230125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,15 +54,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_093521) do
   end
 
   create_table "tours", force: :cascade do |t|
-    t.string "name"
-    t.string "city"
+    t.text "name"
+    t.text "city"
     t.decimal "price"
     t.string "video"
-    t.boolean "status"
+    t.boolean "status", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "des", limit: 100
+    t.text "des"
     t.index ["user_id"], name: "index_tours_on_user_id"
   end
 
