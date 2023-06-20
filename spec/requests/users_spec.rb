@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe "User", type: :request do
   let!(:user) { create :user }
-  include ApplicationController
+  include JsonWebToken
   let!(:access_token) { user.generate_token }
   let!(:Authorization) { access_token.to_s }
   # create user 
