@@ -3,7 +3,89 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/tours":
+    get:
+      summary: list tours
+      tags:
+      - Tours
+      responses:
+        '201':
+          description: user created
+  "/users":
+    post:
+      summary: Create user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+  "/login":
+    post:
+      summary: Authenticate user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user authenticated
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/users/{id}":
+    get:
+      summary: Get user by id
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              example:
+                id: 570
+                name: user 4
+                email: user-test4@gmail.com
 servers:
 - url: http://{defaultHost}
   variables:

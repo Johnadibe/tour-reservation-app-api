@@ -1,10 +1,11 @@
 require 'swagger_helper'
 
-RSpec.describe "User", type: :request do
-  let!(:user) { create :user }
+RSpec.describe User, type: :request do
   include JsonWebToken
-  let!(:access_token) { user.generate_token }
+  let!(:user1) { create :user }
+  let!(:access_token) { generate_token(user1) }
   let!(:Authorization) { access_token.to_s }
+
   # create user 
   path "/users" do
     post("Create user") do
@@ -71,14 +72,14 @@ RSpec.describe "User", type: :request do
   end
 
   # fetch user by id
-  path "/users/:id" do
+  path "/users/{id}" do
     get("Get user by id") do
       produces 'application/json'
       tags "Users"
       parameter name: 'id', in: :path, type: :string, description: 'id'
       parameter name: :Authorization, in: :header, type: :string
-      response(200, 'successful') do
-        let(:id) { user.id }
+      response(200, 'Successful') do
+        let(:id) { user1.id }
         
         after do |example|
           example.metadata[:response][:content] = {
@@ -90,22 +91,15 @@ RSpec.describe "User", type: :request do
 
         run_test! do |response|
           data = JSON.parse(response.body)
-          expect(data.id).to eq(user.id)
+          expect(data['id']).to eq(user1['id'])
         end
+      end
+
+      response(401, "Unauthorized") do
+        let(:id) { user1.id }
+        let!(:Authorization) { "access_token.to_s" }
+        run_test!
       end
     end
   end
-
-  # scenario '/api/v1/users/:id' do
-  #   get "/api/v1/users/#{json_data['data']['id']}", headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-  #   expect(response.status).to eq(200)
-  #   expect(response).to have_http_status(:ok)
-  # end
-
-  # scenario '/api/v1/users/' do
-  #   get '/api/v1/users', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-  #   expect(response.status).to eq(200)
-  #   expect(response).to have_http_status(:ok)
-  #   expect(response.body.length).not_to be_nil
-  # end
 end

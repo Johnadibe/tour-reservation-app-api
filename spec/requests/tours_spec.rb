@@ -1,17 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Tours', type: :request do
-  before(:each) do
-    post '/api/v1/users', params: {
-      name: 'test3',
-      email: 'rails3@yopmail.com',
-      password: 'backend12'
-    }
-  end
+RSpec.describe "Tours", type: :request do
 
-  let(:json_data) { JSON.parse(response.body) }
-
-  describe 'POST /api/v1/tours' do
     scenario 'create a tour' do
       token = json_data['token']
 
@@ -33,20 +23,9 @@ RSpec.describe 'Tours', type: :request do
       get 'list tours' do
         tags 'Tours'
         produces "application/json"
-        response '201', 'user created' do
-          # let! (:user) {User.create(username: 'mp', authentication_token: 'mptoken')}
-          # run_test!
-          scenario 'checking the get request' do
-            # get '/api/v1/tours', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-            let(:Authorization) { "Bearer #{json_data['token']}" }
-            expect(response.status).to eq(200)
-          end
+        response '200', 'Successful' do
+          run_test!
         end
-  
-        # response '422', 'invalid request' do
-        #   let(:user) { { username: 'foo' } }
-        #   run_test!
-        # end
       end
     end
     
