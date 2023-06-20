@@ -1,7 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe "User", type: :request do
-
+  let!(:user) { create :user }
+  include ApplicationController
+  let!(:access_token) { user.generate_token }
+  let!(:Authorization) { access_token.to_s }
   # create user 
   path "/users" do
     post("Create user") do
@@ -71,12 +74,12 @@ RSpec.describe "User", type: :request do
   path "/users/:id" do
     get("Get user by id") do
       produces 'application/json'
+      tags "Users"
       parameter name: 'id', in: :path, type: :string, description: 'id'
       parameter name: :Authorization, in: :header, type: :string
       response(200, 'successful') do
-        let!(:user) { create :user }
-        let!(:Authorization) { user[].to_s }
-
+        let(:id) { user.id }
+        
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -87,7 +90,7 @@ RSpec.describe "User", type: :request do
 
         run_test! do |response|
           data = JSON.parse(response.body)
-          expect(data['data']['id']).to eq(user['id'])
+          expect(data.id).to eq(user.id)
         end
       end
     end
