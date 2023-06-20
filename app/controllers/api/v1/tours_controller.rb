@@ -1,8 +1,13 @@
 class Api::V1::ToursController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: %i[index index_all]
 
   def index
     tours = Tour.with_attached_image.where(status: false)
+    render json: tours, methods: :image_url
+  end
+
+  def index_all
+    tours = Tour.with_attached_image.all
     render json: tours, methods: :image_url
   end
 
