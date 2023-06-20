@@ -2,9 +2,10 @@ FactoryBot.define do
     factory :tour do
       sequence(:name) { |n| "Tour #{n}" }
       sequence(:city) { |n| "Canada #{n}" }
-      price { 245 + n.to_i }
+      price { 245.00 }
       video { "https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR" }
-      user { "2" }
+      des { "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta a possimus impedit modi quia? Incidunt quod esse quibusdam pariatur facilis dolorem odio voluptatibus nesciunt quam repudiandae. Perspiciatis nulla magnam quos?" }
+      user
       
       after(:build) do |tour|
         tour.image.attach(

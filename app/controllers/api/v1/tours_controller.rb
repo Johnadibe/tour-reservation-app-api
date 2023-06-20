@@ -18,7 +18,7 @@ class Api::V1::ToursController < ApplicationController
     if @tour.save
       render json: @tour, status: :created, notice: 'Tour created successfully'
     else
-      render json: { error: 'Could not create Tour successfully' }, status: :bad_request
+      render json: { error: 'Could not create Tour' }, status: :bad_request
     end
   end
 

@@ -10,8 +10,97 @@ paths:
       tags:
       - Tours
       responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example:
+              - id: 56
+                name: Obudu tour
+                city: Ibom
+                price: '245.0'
+                video: Do it now or die regretting
+                status: false
+                user_id: 289
+                created_at: '2023-06-20T14:00:22.085Z'
+                updated_at: '2023-06-20T14:00:22.085Z'
+                des: 
+                image_url: 
+              - id: 89
+                name: Tour 1
+                city: Canada 1
+                price: '245.0'
+                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                status: false
+                user_id: 929
+                created_at: '2023-06-20T19:09:52.273Z'
+                updated_at: '2023-06-20T19:09:52.286Z'
+                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                  a possimus impedit modi quia? Incidunt quod esse quibusdam pariatur
+                  facilis dolorem odio voluptatibus nesciunt quam repudiandae. Perspiciatis
+                  nulla magnam quos?
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--afe829087115b15afe41d3a83eae413506301aeb/dominos.jpg"
+    post:
+      summary: Create tour
+      tags:
+      - Tours
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
         '201':
-          description: user created
+          description: successful
+          content:
+            application/json:
+              example:
+                id: 90
+                name: Joyland
+                city: Lahore
+                price: '30.0'
+                video: This is the video
+                status: false
+                user_id: 930
+                created_at: '2023-06-20T19:09:52.316Z'
+                updated_at: '2023-06-20T19:09:52.316Z'
+                des: Just a small place to fun
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                city:
+                  type: string
+                price:
+                  type: integer
+                des:
+                  type: string
+                video:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+              required:
+              - name
+              - city
+              - price
+              - des
+  "/tours_all":
+    get:
+      summary: list all tours including deleted tours
+      tags:
+      - Tours
+      responses:
+        '200':
+          description: Successful
   "/users":
     post:
       summary: Create user
@@ -79,13 +168,15 @@ paths:
           type: string
       responses:
         '200':
-          description: successful
+          description: Successful
           content:
             application/json:
               example:
-                id: 570
-                name: user 4
-                email: user-test4@gmail.com
+                id: 939
+                name: user 11
+                email: user-test11@gmail.com
+        '401':
+          description: Unauthorized
 servers:
 - url: http://{defaultHost}
   variables:

@@ -16,5 +16,5 @@ class Tour < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :city, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :video, presence: true
+  validates :des, presence: true
 end
