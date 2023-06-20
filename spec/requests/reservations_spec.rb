@@ -44,15 +44,19 @@ RSpec.describe 'Reservations', type: :request do
       parameter name: :Authorization, in: :header, type: :string
       parameter name: :params, in: :body, schema: {
         type: :object,
-        properties: { tour_id: { type: :integer }, start_date: { type: :string }, end_date: { type: :string } },
+        properties: {
+          reservation: { type: :object,
+                         properties: { tour_id: { type: :integer }, start_date: { type: :string, format: 'date' },
+                                       end_date: { type: :string, format: 'date' } } }
+        },
         required: %w[start_date end_date tour_id]
       }
 
-      let(:params) do
-        { start_date: '16-01-2023', end_date: '16-01-2023', tour_id: tour.id }
-      end
-
       response(201, 'successful') do
+        let(:params) do
+          { start_date: '16-01-2023', end_date: '16-01-2023', tour_id: tour.id }
+        end
+
         after do |example|
           example.metadata[:response][:content] = { 'application/json' => {
             example: JSON.parse(response.body, symbolize_names: true)

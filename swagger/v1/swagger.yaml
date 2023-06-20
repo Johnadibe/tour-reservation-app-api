@@ -37,13 +37,13 @@ paths:
           content:
             application/json:
               example:
-                id: 47
+                id: 67
                 start_date: '2023-01-16'
                 end_date: '2023-01-16'
-                user_id: 1184
-                tour_id: 176
-                created_at: '2023-06-20T20:47:35.935Z'
-                updated_at: '2023-06-20T20:47:35.935Z'
+                user_id: 1354
+                tour_id: 246
+                created_at: '2023-06-20T21:06:31.913Z'
+                updated_at: '2023-06-20T21:06:31.913Z'
         '400':
           description: Bad Request
       requestBody:
@@ -52,12 +52,17 @@ paths:
             schema:
               type: object
               properties:
-                tour_id:
-                  type: integer
-                start_date:
-                  type: string
-                end_date:
-                  type: string
+                reservation:
+                  type: object
+                  properties:
+                    tour_id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
               required:
               - start_date
               - end_date
@@ -84,23 +89,23 @@ paths:
           content:
             application/json:
               example:
-                id: 48
+                id: 68
                 start_date: '2023-02-12'
                 end_date: '2023-04-13'
-                user_id: 1190
-                tour_id: 179
-                created_at: '2023-06-20T20:47:35.978Z'
-                updated_at: '2023-06-20T20:47:35.978Z'
+                user_id: 1360
+                tour_id: 249
+                created_at: '2023-06-20T21:06:31.959Z'
+                updated_at: '2023-06-20T21:06:31.959Z'
                 tour:
-                  id: 179
+                  id: 249
                   name: Tour 7
                   city: Canada 7
                   price: '245.0'
                   video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                   status: false
-                  user_id: 1191
-                  created_at: '2023-06-20T20:47:35.973Z'
-                  updated_at: '2023-06-20T20:47:35.976Z'
+                  user_id: 1361
+                  created_at: '2023-06-20T21:06:31.954Z'
+                  updated_at: '2023-06-20T21:06:31.957Z'
                   des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                     a possimus impedit modi quia? Incidunt?
         '401':
@@ -127,18 +132,18 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 182
+              - id: 252
                 name: Tour 10
                 city: Canada 10
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 1197
-                created_at: '2023-06-20T20:47:36.032Z'
-                updated_at: '2023-06-20T20:47:36.035Z'
+                user_id: 1367
+                created_at: '2023-06-20T21:06:32.001Z'
+                updated_at: '2023-06-20T21:06:32.007Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96e51d289056a44229c245636a1be2351b0a3272/dominos.jpg"
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBYk09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f040b0fbe88e062cb79af5c376b997f7ce783690/dominos.jpg"
     post:
       summary: Create tour
       tags:
@@ -154,15 +159,15 @@ paths:
           content:
             application/json:
               example:
-                id: 183
+                id: 253
                 name: Joyland
                 city: Lahore
                 price: '30.0'
                 video: This is the video
                 status: false
-                user_id: 1198
-                created_at: '2023-06-20T20:47:36.058Z'
-                updated_at: '2023-06-20T20:47:36.058Z'
+                user_id: 1368
+                created_at: '2023-06-20T21:06:32.027Z'
+                updated_at: '2023-06-20T21:06:32.027Z'
                 des: Just a small place to fun
         '400':
           description: Bad Request
@@ -212,18 +217,18 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 184
+              - id: 254
                 name: Tour 11
                 city: Canada 11
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 1201
-                created_at: '2023-06-20T20:47:36.076Z'
-                updated_at: '2023-06-20T20:47:36.079Z'
+                user_id: 1371
+                created_at: '2023-06-20T21:06:32.052Z'
+                updated_at: '2023-06-20T21:06:32.056Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBlQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--29ae9ac6ccaa30eec557e028ffd6b2e3741d798f/dominos.jpg"
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBYlE9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10ef6c4caff4dda8d6b58584890cc2d63b7ed8f7/dominos.jpg"
   "/tours/{id}":
     get:
       summary: Show tour
@@ -246,15 +251,15 @@ paths:
           content:
             application/json:
               example:
-                id: 185
+                id: 255
                 name: Tour 12
                 city: Canada 12
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 1203
-                created_at: '2023-06-20T20:47:36.099Z'
-                updated_at: '2023-06-20T20:47:36.106Z'
+                user_id: 1373
+                created_at: '2023-06-20T21:06:32.074Z'
+                updated_at: '2023-06-20T21:06:32.078Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
         '401':
@@ -330,7 +335,7 @@ paths:
           content:
             application/json:
               example:
-                id: 1210
+                id: 1380
                 name: user 32
                 email: user-test32@gmail.com
         '401':
