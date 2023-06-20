@@ -41,7 +41,6 @@ RSpec.describe 'Tours', type: :request do
             let(:Authorization) { "Bearer #{json_data['token']}" }
             expect(response.status).to eq(200)
           end
-          end
         end
   
         # response '422', 'invalid request' do
