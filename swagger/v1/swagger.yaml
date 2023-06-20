@@ -4,6 +4,107 @@ info:
   title: API V1
   version: v1
 paths:
+  "/reservations":
+    get:
+      summary: list reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example: []
+        '401':
+          description: Unauthorized
+    post:
+      summary: Create reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              example:
+                id: 47
+                start_date: '2023-01-16'
+                end_date: '2023-01-16'
+                user_id: 1184
+                tour_id: 176
+                created_at: '2023-06-20T20:47:35.935Z'
+                updated_at: '2023-06-20T20:47:35.935Z'
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tour_id:
+                  type: integer
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+              required:
+              - start_date
+              - end_date
+              - tour_id
+  "/reservations/{id}":
+    get:
+      summary: Show reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example:
+                id: 48
+                start_date: '2023-02-12'
+                end_date: '2023-04-13'
+                user_id: 1190
+                tour_id: 179
+                created_at: '2023-06-20T20:47:35.978Z'
+                updated_at: '2023-06-20T20:47:35.978Z'
+                tour:
+                  id: 179
+                  name: Tour 7
+                  city: Canada 7
+                  price: '245.0'
+                  video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                  status: false
+                  user_id: 1191
+                  created_at: '2023-06-20T20:47:35.973Z'
+                  updated_at: '2023-06-20T20:47:35.976Z'
+                  des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                    a possimus impedit modi quia? Incidunt?
+        '401':
+          description: Unauthorized
   "/tours":
     get:
       summary: list tours
@@ -26,18 +127,18 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 101
-                name: Tour 1
-                city: Canada 1
+              - id: 182
+                name: Tour 10
+                city: Canada 10
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 993
-                created_at: '2023-06-20T19:45:16.269Z'
-                updated_at: '2023-06-20T19:45:16.282Z'
+                user_id: 1197
+                created_at: '2023-06-20T20:47:36.032Z'
+                updated_at: '2023-06-20T20:47:36.035Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ba374f1c35a168b398791e31942ddcfdc6987e1e/dominos.jpg"
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96e51d289056a44229c245636a1be2351b0a3272/dominos.jpg"
     post:
       summary: Create tour
       tags:
@@ -53,15 +154,15 @@ paths:
           content:
             application/json:
               example:
-                id: 102
+                id: 183
                 name: Joyland
                 city: Lahore
                 price: '30.0'
                 video: This is the video
                 status: false
-                user_id: 994
-                created_at: '2023-06-20T19:45:16.315Z'
-                updated_at: '2023-06-20T19:45:16.315Z'
+                user_id: 1198
+                created_at: '2023-06-20T20:47:36.058Z'
+                updated_at: '2023-06-20T20:47:36.058Z'
                 des: Just a small place to fun
         '400':
           description: Bad Request
@@ -111,18 +212,18 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 103
-                name: Tour 2
-                city: Canada 2
+              - id: 184
+                name: Tour 11
+                city: Canada 11
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 997
-                created_at: '2023-06-20T19:45:16.334Z'
-                updated_at: '2023-06-20T19:45:16.337Z'
+                user_id: 1201
+                created_at: '2023-06-20T20:47:36.076Z'
+                updated_at: '2023-06-20T20:47:36.079Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1f9f02f5591e3538445f6e01d48d6b2a8a293352/dominos.jpg"
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBlQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--29ae9ac6ccaa30eec557e028ffd6b2e3741d798f/dominos.jpg"
   "/tours/{id}":
     get:
       summary: Show tour
@@ -145,15 +246,15 @@ paths:
           content:
             application/json:
               example:
-                id: 104
-                name: Tour 3
-                city: Canada 3
+                id: 185
+                name: Tour 12
+                city: Canada 12
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 999
-                created_at: '2023-06-20T19:45:16.358Z'
-                updated_at: '2023-06-20T19:45:16.364Z'
+                user_id: 1203
+                created_at: '2023-06-20T20:47:36.099Z'
+                updated_at: '2023-06-20T20:47:36.106Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
         '401':
@@ -229,9 +330,9 @@ paths:
           content:
             application/json:
               example:
-                id: 1006
-                name: user 14
-                email: user-test14@gmail.com
+                id: 1210
+                name: user 32
+                email: user-test32@gmail.com
         '401':
           description: Unauthorized
 servers:
