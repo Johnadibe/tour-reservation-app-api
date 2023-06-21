@@ -1,60 +1,107 @@
-require 'rails_helper'
+require 'swagger_helper'
 
 RSpec.describe 'Reservations', type: :request do
-  before(:each) do
-    post '/api/v1/users', params: {
-      name: 'test3',
-      email: 'rails3@yopmail.com',
-      password: 'backend12'
-    }
+  include JsonWebToken
+  let!(:user1) { create :user }
+  let!(:tour) { create :tour }
+  let!(:access_token) { generate_token(user1) }
+  let!(:Authorization) { access_token.to_s }
+
+  # get reservations
+  path '/reservations' do
+    get 'list reservations' do
+      tags 'Reservations'
+      produces 'application/json'
+      parameter name: :Authorization, in: :header, type: :string
+      response '200', 'Successful' do
+        let!(:reservation) { create :reservation }
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+
+        run_test! do |response|
+          response = JSON.parse(response.body)
+          expect(response).not_to be_nil
+        end
+      end
+
+      response(401, 'Unauthorized') do
+        let!(:Authorization) { 'access_token.to_s' }
+        run_test!
+      end
+    end
   end
 
-  let(:json_data) { JSON.parse(response.body) }
-
-  describe 'POST /api/v1/reservations' do
-    scenario 'create a reservation' do
-      token = json_data['token']
-
-      post "/api/v1/reservations?token=#{token}", params: {
-        reservation: {
-          start_date: '12/05/2023',
-          end_date: '13/07/2023'
-        }
+  path '/reservations' do
+    post 'Create reservations' do
+      tags 'Reservations'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :Authorization, in: :header, type: :string
+      parameter name: :params, in: :body, schema: {
+        type: :object,
+        properties: {
+          reservation: { type: :object,
+                         properties: { tour_id: { type: :integer }, start_date: { type: :string, format: 'date' },
+                                       end_date: { type: :string, format: 'date' } } }
+        },
+        required: %w[start_date end_date tour_id]
       }
 
-      expect(response.body).not_to be_nil
-    end
-    scenario 'checks the request when we are not passing the token' do
-      post '/api/v1/reservations', params: {
-        reservation: {
-          start_date: '12/05/2023',
-          end_date: '13/07/2023'
-        }
-      }
-      expect(response.status).to eq(401)
-    end
-    scenario 'checks the request ' do
-      post '/api/v1/reservations', params: {
-        tour: {
-          start_date: '12/05/2023',
-          end_date: '13/07/2023'
-        }
-      }
-      expect(response).not_to have_http_status(:ok)
+      response(201, 'successful') do
+        let(:params) do
+          { start_date: '16-01-2023', end_date: '16-01-2023', tour_id: tour.id }
+        end
+
+        after do |example|
+          example.metadata[:response][:content] = { 'application/json' => {
+            example: JSON.parse(response.body, symbolize_names: true)
+          } }
+        end
+        run_test!
+      end
+
+      response(400, 'Bad Request') do
+        let!(:params) { { start_date: 'name' } }
+        run_test!
+      end
     end
   end
-  describe 'Get /post' do
-    scenario 'checking the get request' do
-      get '/api/v1/reservations', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-      expect(response.status).to eq(200)
-    end
-    scenario 'checking the get http request' do
-      get '/api/v1/reservations', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-      expect(response).to have_http_status(:ok)
-    end
-    scenario 'checking the get response' do
-      get '/api/v1/reservations', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-      expect(response.body).to eq('[]')
+
+  # fetch reservation by id
+  path '/reservations/{id}' do
+    get('Show reservation') do
+      produces 'application/json'
+      tags 'Reservations'
+      parameter name: 'id', in: :path, type: :string, description: 'id'
+      parameter name: :Authorization, in: :header, type: :string
+      let!(:reservation) { create :reservation }
+      response(200, 'Successful') do
+        let(:id) { reservation.id }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['id']).to eq(reservation['id'])
+        end
+      end
+
+      response(401, 'Unauthorized') do
+        let(:id) { reservation.id }
+        let!(:Authorization) { 'access_token.to_s' }
+        run_test!
+      end
     end
   end
 end

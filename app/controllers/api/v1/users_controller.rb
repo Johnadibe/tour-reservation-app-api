@@ -8,7 +8,8 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: { data: UserSerializer.new(user), message: 'Registration successful', token: generate_token(user) }
+      render json: { data: UserSerializer.new(user), message: 'Registration successful', token: generate_token(user) },
+             status: :created, location: @user
     elsif user.errors.messages
       render json: { error: user.errors.messages }
     else
@@ -39,7 +40,7 @@ class Api::V1::UsersController < ApplicationController
     if user.present? && user.authenticate(session_params[:password])
       render json: { user: UserSerializer.new(user), message: 'Logged in successfully', token: generate_token(user) }
     else
-      render json: { error: 'Incorrect username or password.' }
+      render json: { error: 'Incorrect username or password.' }, status: :unauthorized
     end
   end
 

@@ -1,102 +1,347 @@
 ---
 openapi: 3.0.1
 info:
-  title: TourX API V1 Guide
+  title: API V1
   version: v1
 paths:
-  "/login":
-    post:
-      summary: create authentication
-      responses:
-        '200':
-          description: successful
-  "/users":
-    post:
-      summary: create user
-      responses:
-        '200':
-          description: successful
-    get:
-      summary: list users
-      responses:
-        '200':
-          description: successful
-  "/users/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: show a specific user
-      operationId: showUser
-      responses:
-        '200':
-          description: Successful response
-  "/tours":
-    get:
-      summary: list tours
-      responses:
-        '200':
-          description: successful
-    post:
-      summary: create tour
-      responses:
-        '200':
-          description: successful
-  "/tours/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: show a specific tour
-      operationId: showTour
-      responses:
-        '200':
-          description: Successful response
-    patch:
-      summary: update tour
-      responses:
-        '200':
-          description: successful
-    put:
-      summary: update tour
-      responses:
-        '200':
-          description: successful
   "/reservations":
     get:
       summary: list reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
       responses:
         '200':
-          description: successful
+          description: Successful
+          content:
+            application/json:
+              example: []
+        '401':
+          description: Unauthorized
     post:
-      summary: create reservation
+      summary: Create reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
       responses:
-        '200':
+        '201':
           description: successful
+          content:
+            application/json:
+              example:
+                id: 106
+                start_date: '2023-01-16'
+                end_date: '2023-01-16'
+                user_id: 1669
+                tour_id: 351
+                created_at: '2023-06-21T08:55:58.461Z'
+                updated_at: '2023-06-21T08:55:58.461Z'
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reservation:
+                  type: object
+                  properties:
+                    tour_id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+              required:
+              - start_date
+              - end_date
+              - tour_id
   "/reservations/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
     get:
-      summary: show a specific reservation
-      operationId: showReservation
+      summary: Show reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
       responses:
         '200':
-          description: Successful response
+          description: Successful
+          content:
+            application/json:
+              example:
+                id: 107
+                start_date: '2023-02-12'
+                end_date: '2023-04-13'
+                user_id: 1675
+                tour_id: 354
+                created_at: '2023-06-21T08:55:58.540Z'
+                updated_at: '2023-06-21T08:55:58.540Z'
+                tour:
+                  id: 354
+                  name: Tour 7
+                  city: Canada 7
+                  price: '245.0'
+                  video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                  status: false
+                  user_id: 1676
+                  created_at: '2023-06-21T08:55:58.530Z'
+                  updated_at: '2023-06-21T08:55:58.535Z'
+                  des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                    a possimus impedit modi quia? Incidunt?
+        '401':
+          description: Unauthorized
+  "/tours":
+    get:
+      summary: list tours
+      tags:
+      - Tours
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example:
+              - id: 56
+                name: Obudu tour
+                city: Ibom
+                price: '245.0'
+                video: Do it now or die regretting
+                status: false
+                user_id: 289
+                created_at: '2023-06-20T14:00:22.085Z'
+                updated_at: '2023-06-20T14:00:22.085Z'
+                des: 
+                image_url: 
+              - id: 357
+                name: Tour 10
+                city: Canada 10
+                price: '245.0'
+                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                status: false
+                user_id: 1682
+                created_at: '2023-06-21T08:55:58.634Z'
+                updated_at: '2023-06-21T08:55:58.644Z'
+                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                  a possimus impedit modi quia? Incidunt?
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFlCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d723a10a62c67d868a5bd2cf8a5346e2079533b/dominos.jpg"
+    post:
+      summary: Create tour
+      tags:
+      - Tours
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              example:
+                id: 358
+                name: Joyland
+                city: Lahore
+                price: '30.0'
+                video: This is the video
+                status: false
+                user_id: 1683
+                created_at: '2023-06-21T08:55:58.687Z'
+                updated_at: '2023-06-21T08:55:58.687Z'
+                des: Just a small place to fun
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                city:
+                  type: string
+                price:
+                  type: integer
+                des:
+                  type: string
+                video:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+              required:
+              - name
+              - city
+              - price
+              - des
+  "/tours-all":
+    get:
+      summary: list all tours including removed tours
+      tags:
+      - Tours
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example:
+              - id: 56
+                name: Obudu tour
+                city: Ibom
+                price: '245.0'
+                video: Do it now or die regretting
+                status: false
+                user_id: 289
+                created_at: '2023-06-20T14:00:22.085Z'
+                updated_at: '2023-06-20T14:00:22.085Z'
+                des: 
+                image_url: 
+              - id: 359
+                name: Tour 11
+                city: Canada 11
+                price: '245.0'
+                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                status: false
+                user_id: 1686
+                created_at: '2023-06-21T08:55:58.723Z'
+                updated_at: '2023-06-21T08:55:58.728Z'
+                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                  a possimus impedit modi quia? Incidunt?
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaGNCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6bfc72b86e024c7929438628bdb88e1a7a973bbc/dominos.jpg"
+  "/tours/{id}":
+    get:
+      summary: Show tour
+      tags:
+      - Tours
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example:
+                id: 360
+                name: Tour 12
+                city: Canada 12
+                price: '245.0'
+                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                status: false
+                user_id: 1688
+                created_at: '2023-06-21T08:55:58.763Z'
+                updated_at: '2023-06-21T08:55:58.769Z'
+                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                  a possimus impedit modi quia? Incidunt?
+        '401':
+          description: Unauthorized
+  "/users":
+    post:
+      summary: Create user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+  "/login":
+    post:
+      summary: Authenticate user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user authenticated
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/users/{id}":
+    get:
+      summary: Get user by id
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              example:
+                id: 1695
+                name: user 32
+                email: user-test32@gmail.com
+        '401':
+          description: Unauthorized
 servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
-      default: 127.0.0.1:3000/api/v1
+      default: localhost:3000/api/v1

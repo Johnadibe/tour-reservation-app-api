@@ -1,71 +1,119 @@
-require 'rails_helper'
+require 'swagger_helper'
 
 RSpec.describe 'Tours', type: :request do
-  before(:each) do
-    post '/api/v1/users', params: {
-      name: 'test3',
-      email: 'rails3@yopmail.com',
-      password: 'backend12'
-    }
+  include JsonWebToken
+  let!(:user1) { create :user }
+  let!(:access_token) { generate_token(user1) }
+  let!(:Authorization) { access_token.to_s }
+
+  path '/tours' do
+    get 'list tours' do
+      tags 'Tours'
+      produces 'application/json'
+      let!(:tour) { create :tour }
+      response '200', 'Successful' do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+
+        run_test! do |response|
+          response = JSON.parse(response.body)
+          expect(response).to_not eq([])
+        end
+      end
+    end
   end
 
-  let(:json_data) { JSON.parse(response.body) }
-
-  describe 'POST /api/v1/tours' do
-    scenario 'create a tour' do
-      token = json_data['token']
-
-      post "/api/v1/tours?token=#{token}", params: {
-        tour: {
-          name: 'Joyland',
-          city: 'Lahore',
-          price: 30,
-          video: 'This is the video',
-          image: 'This is the image',
-          des: 'Just a small place to fun'
-        }
+  # create tour
+  path '/tours' do
+    post 'Create tour' do
+      tags 'Tours'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :Authorization, in: :header, type: :string
+      parameter name: :params, in: :body, schema: {
+        type: :object,
+        properties: { name: { type: :string }, city: { type: :string }, price: { type: :integer },
+                      des: { type: :string }, video: { type: :string }, image: { type: :string, format: :binary } },
+        required: %w[name city price des]
       }
+      let(:params) do
+        { name: 'Joyland', city: 'Lahore', price: 30, video: 'This is the video', des: 'Just a small place to fun',
+          image: fixture_file_upload('dominos.png', 'image/png') }
+      end
+      response(201, 'successful') do
+        after do |example|
+          example.metadata[:response][:content] = { 'application/json' => {
+            example: JSON.parse(response.body, symbolize_names: true)
+          } }
+        end
+        run_test!
+      end
 
-      expect(response.body).not_to be_nil
-    end
-    scenario 'checks the request when we are not passing the token' do
-      post '/api/v1/tours', params: {
-        tour: {
-          name: 'Joyland',
-          city: 'Lahore',
-          price: 30,
-          video: 'This is the video',
-          image: 'This is the image',
-          des: 'Just a small place to fun'
-        }
-      }
-      expect(response.status).to eq(401)
-    end
-    scenario 'checks the request ' do
-      post '/api/v1/tours', params: {
-        tour: {
-          name: 'Joyland',
-          city: 'Lahore',
-          price: 30,
-          video: 'This is the video',
-          image: 'This is the image'
-        }
-      }
-      expect(response).not_to have_http_status(:ok)
+      response(400, 'Bad Request') do
+        let!(:params) { { name: 'name', city: 'Lagos' } }
+        run_test!
+      end
     end
   end
-  describe 'Get /post' do
-    scenario 'checking the get request' do
-      get '/api/v1/tours', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-      expect(response.status).to eq(200)
+
+  # fetch all tours including removed tours
+  path '/tours-all' do
+    get 'list all tours including removed tours' do
+      tags 'Tours'
+      produces 'application/json'
+      let!(:tour) { create :tour }
+      response '200', 'Successful' do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+
+        run_test! do |response|
+          response = JSON.parse(response.body)
+          expect(response).to_not eq([])
+        end
+      end
     end
-    scenario 'checking the get http request' do
-      get '/api/v1/tours', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-      expect(response).to have_http_status(:ok)
-    end
-    scenario 'checking the get responce' do
-      get '/api/v1/tours', headers: { 'Authorization' => "Bearer #{json_data['token']}" }
-      expect(response.body).to eq('[]')
+  end
+
+  # fetch tour by id
+  path '/tours/{id}' do
+    get('Show tour') do
+      produces 'application/json'
+      tags 'Tours'
+      parameter name: 'id', in: :path, type: :string, description: 'id'
+      parameter name: :Authorization, in: :header, type: :string
+      let!(:tour) { create :tour }
+      response(200, 'Successful') do
+        let(:id) { tour.id }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['id']).to eq(tour['id'])
+        end
+      end
+
+      response(401, 'Unauthorized') do
+        let(:id) { tour.id }
+        let!(:Authorization) { 'access_token.to_s' }
+        run_test!
+      end
     end
   end
 end
