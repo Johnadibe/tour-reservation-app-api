@@ -37,13 +37,13 @@ paths:
           content:
             application/json:
               example:
-                id: 67
+                id: 106
                 start_date: '2023-01-16'
                 end_date: '2023-01-16'
-                user_id: 1354
-                tour_id: 246
-                created_at: '2023-06-20T21:06:31.913Z'
-                updated_at: '2023-06-20T21:06:31.913Z'
+                user_id: 1669
+                tour_id: 351
+                created_at: '2023-06-21T08:55:58.461Z'
+                updated_at: '2023-06-21T08:55:58.461Z'
         '400':
           description: Bad Request
       requestBody:
@@ -89,23 +89,23 @@ paths:
           content:
             application/json:
               example:
-                id: 68
+                id: 107
                 start_date: '2023-02-12'
                 end_date: '2023-04-13'
-                user_id: 1360
-                tour_id: 249
-                created_at: '2023-06-20T21:06:31.959Z'
-                updated_at: '2023-06-20T21:06:31.959Z'
+                user_id: 1675
+                tour_id: 354
+                created_at: '2023-06-21T08:55:58.540Z'
+                updated_at: '2023-06-21T08:55:58.540Z'
                 tour:
-                  id: 249
+                  id: 354
                   name: Tour 7
                   city: Canada 7
                   price: '245.0'
                   video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                   status: false
-                  user_id: 1361
-                  created_at: '2023-06-20T21:06:31.954Z'
-                  updated_at: '2023-06-20T21:06:31.957Z'
+                  user_id: 1676
+                  created_at: '2023-06-21T08:55:58.530Z'
+                  updated_at: '2023-06-21T08:55:58.535Z'
                   des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                     a possimus impedit modi quia? Incidunt?
         '401':
@@ -132,18 +132,18 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 252
+              - id: 357
                 name: Tour 10
                 city: Canada 10
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 1367
-                created_at: '2023-06-20T21:06:32.001Z'
-                updated_at: '2023-06-20T21:06:32.007Z'
+                user_id: 1682
+                created_at: '2023-06-21T08:55:58.634Z'
+                updated_at: '2023-06-21T08:55:58.644Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBYk09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f040b0fbe88e062cb79af5c376b997f7ce783690/dominos.jpg"
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFlCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d723a10a62c67d868a5bd2cf8a5346e2079533b/dominos.jpg"
     post:
       summary: Create tour
       tags:
@@ -159,15 +159,15 @@ paths:
           content:
             application/json:
               example:
-                id: 253
+                id: 358
                 name: Joyland
                 city: Lahore
                 price: '30.0'
                 video: This is the video
                 status: false
-                user_id: 1368
-                created_at: '2023-06-20T21:06:32.027Z'
-                updated_at: '2023-06-20T21:06:32.027Z'
+                user_id: 1683
+                created_at: '2023-06-21T08:55:58.687Z'
+                updated_at: '2023-06-21T08:55:58.687Z'
                 des: Just a small place to fun
         '400':
           description: Bad Request
@@ -217,18 +217,18 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 254
+              - id: 359
                 name: Tour 11
                 city: Canada 11
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 1371
-                created_at: '2023-06-20T21:06:32.052Z'
-                updated_at: '2023-06-20T21:06:32.056Z'
+                user_id: 1686
+                created_at: '2023-06-21T08:55:58.723Z'
+                updated_at: '2023-06-21T08:55:58.728Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBYlE9IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10ef6c4caff4dda8d6b58584890cc2d63b7ed8f7/dominos.jpg"
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaGNCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6bfc72b86e024c7929438628bdb88e1a7a973bbc/dominos.jpg"
   "/tours/{id}":
     get:
       summary: Show tour
@@ -251,15 +251,15 @@ paths:
           content:
             application/json:
               example:
-                id: 255
+                id: 360
                 name: Tour 12
                 city: Canada 12
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 1373
-                created_at: '2023-06-20T21:06:32.074Z'
-                updated_at: '2023-06-20T21:06:32.078Z'
+                user_id: 1688
+                created_at: '2023-06-21T08:55:58.763Z'
+                updated_at: '2023-06-21T08:55:58.769Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
         '401':
@@ -335,7 +335,7 @@ paths:
           content:
             application/json:
               example:
-                id: 1380
+                id: 1695
                 name: user 32
                 email: user-test32@gmail.com
         '401':
@@ -344,4 +344,4 @@ servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
-      default: 127.0.0.1:3000/api/v1
+      default: localhost:3000/api/v1

@@ -45,6 +45,6 @@ class Api::V1::ToursController < ApplicationController
   private
 
   def tour_params
-    params.permit(:name, :city, :price, :video, :image, :des)
+    params.permit(:name, :city, :price, :video, :image, :des, :status)
   end
 end
