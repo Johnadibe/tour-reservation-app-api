@@ -12,7 +12,7 @@ RSpec.describe 'Reservations', type: :request do
     get 'list reservations' do
       tags 'Reservations'
       produces 'application/json'
-      security [ bearerAuth: [] ]
+      security [bearerAuth: []]
       response '200', 'Successful' do
         let!(:reservation) { create :reservation }
         after do |example|
@@ -41,7 +41,7 @@ RSpec.describe 'Reservations', type: :request do
       tags 'Reservations'
       produces 'application/json'
       consumes 'application/json'
-      security [ bearerAuth: [] ]
+      security [bearerAuth: []]
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: {
@@ -78,7 +78,7 @@ RSpec.describe 'Reservations', type: :request do
       produces 'application/json'
       tags 'Reservations'
       parameter name: 'id', in: :path, type: :string, description: 'id'
-      security [ bearerAuth: [] ]
+      security [bearerAuth: []]
       let!(:reservation) { create :reservation }
       response(200, 'Successful') do
         let(:id) { reservation.id }
