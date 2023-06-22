@@ -13,7 +13,7 @@ class Api::V1::ReservationsController < ApplicationController
   def create
     @reservation = current_user.reservations.new(reservation_params)
     if @reservation.save
-      render json: @reservation, status: :created, notice: 'Reservation created successfully'
+      render json: @reservation.to_json(include: :tour), status: :created, notice: 'Reservation created successfully'
     else
       render json: { error: 'Unable to create reservation' }, status: :bad_request
     end
