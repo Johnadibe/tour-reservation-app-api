@@ -1,4 +1,9 @@
-# tour-reservation-app-api
+<div align="center">
+  <h2><b>🕹️🕹️ Tour Reservation API 🕹️🕹️</b></h2>
+  <br/>
+  <img src="./public/logo.png" alt="logo" width="140"  height="auto" />
+  <br/>
+</div>
 
 <a name="readme-top"></a>
 
