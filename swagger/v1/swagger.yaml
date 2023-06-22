@@ -14,9 +14,6 @@ paths:
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example: []
         '401':
           description: Unauthorized
     post:
@@ -29,28 +26,6 @@ paths:
       responses:
         '201':
           description: successful
-          content:
-            application/json:
-              example:
-                id: 22
-                start_date: '2023-01-16'
-                end_date: '2023-01-16'
-                user_id: 177
-                tour_id: 74
-                created_at: '2023-06-22T13:12:15.174Z'
-                updated_at: '2023-06-22T13:12:15.174Z'
-                tour:
-                  id: 74
-                  name: Tour 4
-                  city: Canada 4
-                  price: '245.0'
-                  video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                  status: false
-                  user_id: 178
-                  created_at: '2023-06-22T13:12:15.164Z'
-                  updated_at: '2023-06-22T13:12:15.168Z'
-                  des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                    a possimus impedit modi quia? Incidunt?
         '400':
           description: Bad Request
       requestBody:
@@ -91,28 +66,6 @@ paths:
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-                id: 23
-                start_date: '2023-02-12'
-                end_date: '2023-04-13'
-                user_id: 183
-                tour_id: 77
-                created_at: '2023-06-22T13:12:15.219Z'
-                updated_at: '2023-06-22T13:12:15.219Z'
-                tour:
-                  id: 77
-                  name: Tour 7
-                  city: Canada 7
-                  price: '245.0'
-                  video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                  status: false
-                  user_id: 184
-                  created_at: '2023-06-22T13:12:15.213Z'
-                  updated_at: '2023-06-22T13:12:15.217Z'
-                  des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                    a possimus impedit modi quia? Incidunt?
         '401':
           description: Unauthorized
   "/tours":
@@ -123,21 +76,6 @@ paths:
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-              - id: 80
-                name: Tour 10
-                city: Canada 10
-                price: '245.0'
-                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                status: false
-                user_id: 190
-                created_at: '2023-06-22T13:12:15.259Z'
-                updated_at: '2023-06-22T13:12:15.264Z'
-                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                  a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBVQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a41a9c2c3aa32ba1603d8a19fa53e4c80cd20c17/dominos.jpg"
     post:
       summary: Create tour
       tags:
@@ -148,19 +86,6 @@ paths:
       responses:
         '201':
           description: successful
-          content:
-            application/json:
-              example:
-                id: 81
-                name: Joyland
-                city: Lahore
-                price: '30.0'
-                video: This is the video
-                status: false
-                user_id: 191
-                created_at: '2023-06-22T13:12:15.284Z'
-                updated_at: '2023-06-22T13:12:15.284Z'
-                des: Just a small place to fun
         '400':
           description: Bad Request
       requestBody:
@@ -197,9 +122,6 @@ paths:
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example: []
   "/tours/{id}":
     get:
       summary: Show tour
@@ -217,20 +139,6 @@ paths:
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-                id: 83
-                name: Tour 12
-                city: Canada 12
-                price: '245.0'
-                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                status: false
-                user_id: 196
-                created_at: '2023-06-22T13:12:15.330Z'
-                updated_at: '2023-06-22T13:12:15.335Z'
-                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                  a possimus impedit modi quia? Incidunt?
         '401':
           description: Unauthorized
   "/users":
@@ -299,12 +207,6 @@ paths:
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-                id: 203
-                name: user 32
-                email: user-test32@gmail.com
         '401':
           description: Unauthorized
 servers:
