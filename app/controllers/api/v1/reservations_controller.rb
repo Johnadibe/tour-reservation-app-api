@@ -1,7 +1,7 @@
 class Api::V1::ReservationsController < ApplicationController
   def index
     user = current_user
-    @reservations = Reservation.includes(:tour).where(user_id: user.id)
+    @reservations = Reservation.includes(:tour).where(user_id: user.id).order(created_at: :desc)
     render json: @reservations.to_json(include: :tour)
   end
 

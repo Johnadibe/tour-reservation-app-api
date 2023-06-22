@@ -143,6 +143,7 @@ The following command can be used to run the application.
 
 - [ ] **[Add Admin dashboard]**
 - [ ] **[Add payment system]**
+- [ ] **[Cancel reservation]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
