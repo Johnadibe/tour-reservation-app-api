@@ -16,7 +16,7 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
+        title: 'TourX API V1',
         version: 'v1'
       },
       paths: {},

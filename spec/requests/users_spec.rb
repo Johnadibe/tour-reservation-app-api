@@ -78,8 +78,8 @@ RSpec.describe User, type: :request do
     get('Get user by id') do
       produces 'application/json'
       tags 'Users'
+      security [ bearerAuth: [] ]
       parameter name: 'id', in: :path, type: :string, description: 'id'
-      parameter name: :Authorization, in: :header, type: :string
       response(200, 'Successful') do
         let(:id) { user1.id }
 
