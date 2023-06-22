@@ -11,6 +11,8 @@
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
   - [🚀 Link to React Frontend](#front-end)
+  - [🚀 Kaban Board](#Kaban-Board)
+    - [Kaban Board Initial State](#initial-state)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -50,6 +52,21 @@
 ## 🚀 Link to Front-end <a name="front-end"></a>
 
 - [Link to Front-end](https://github.com/Johnadibe/tour-reservation-app)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🚀 Kaban Board <a name="Kaban-Board"></a>
+- [Kaban Board](https://github.com/users/Johnadibe/projects/4) This is the link to the project management tool used to track the progress of the project.
+
+### Kaban Board Initial State <a name="initial-state"></a>
+- [Kaban Board Initial State](https://github.com/Johnadibe/tour-reservation-app-api/issues/23) This is the link to the project management tool used to track the progress of the project.
+
+In this team, we are 4 in number,
+
+- @Johnadibe
+- @mrprotocoll
+- @Hassaanjbaig-code
+- @Donmark2k
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -143,6 +160,7 @@ The following command can be used to run the application.
 
 - [ ] **[Add Admin dashboard]**
 - [ ] **[Add payment system]**
+- [ ] **[Cancel reservation]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

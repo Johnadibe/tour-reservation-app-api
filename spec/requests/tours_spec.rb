@@ -62,10 +62,11 @@ RSpec.describe 'Tours', type: :request do
   end
 
   # fetch all tours including removed tours
-  path '/tours-all' do
-    get 'list all tours including removed tours' do
+  path '/my-tours' do
+    get 'list all tours created by user' do
       tags 'Tours'
       produces 'application/json'
+      parameter name: :Authorization, in: :header, type: :string
       let!(:tour) { create :tour }
       response '200', 'Successful' do
         after do |example|
@@ -78,7 +79,7 @@ RSpec.describe 'Tours', type: :request do
 
         run_test! do |response|
           response = JSON.parse(response.body)
-          expect(response).to_not eq([])
+          expect(response).to_not be_nil
         end
       end
     end

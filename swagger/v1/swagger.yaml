@@ -37,13 +37,25 @@ paths:
           content:
             application/json:
               example:
-                id: 106
+                id: 155
                 start_date: '2023-01-16'
                 end_date: '2023-01-16'
-                user_id: 1669
-                tour_id: 351
-                created_at: '2023-06-21T08:55:58.461Z'
-                updated_at: '2023-06-21T08:55:58.461Z'
+                user_id: 2028
+                tour_id: 490
+                created_at: '2023-06-22T07:11:12.286Z'
+                updated_at: '2023-06-22T07:11:12.286Z'
+                tour:
+                  id: 490
+                  name: Tour 4
+                  city: Canada 4
+                  price: '245.0'
+                  video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                  status: false
+                  user_id: 2029
+                  created_at: '2023-06-22T07:11:12.273Z'
+                  updated_at: '2023-06-22T07:11:12.278Z'
+                  des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                    a possimus impedit modi quia? Incidunt?
         '400':
           description: Bad Request
       requestBody:
@@ -89,23 +101,23 @@ paths:
           content:
             application/json:
               example:
-                id: 107
+                id: 156
                 start_date: '2023-02-12'
                 end_date: '2023-04-13'
-                user_id: 1675
-                tour_id: 354
-                created_at: '2023-06-21T08:55:58.540Z'
-                updated_at: '2023-06-21T08:55:58.540Z'
+                user_id: 2034
+                tour_id: 493
+                created_at: '2023-06-22T07:11:12.333Z'
+                updated_at: '2023-06-22T07:11:12.333Z'
                 tour:
-                  id: 354
+                  id: 493
                   name: Tour 7
                   city: Canada 7
                   price: '245.0'
                   video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                   status: false
-                  user_id: 1676
-                  created_at: '2023-06-21T08:55:58.530Z'
-                  updated_at: '2023-06-21T08:55:58.535Z'
+                  user_id: 2035
+                  created_at: '2023-06-22T07:11:12.326Z'
+                  updated_at: '2023-06-22T07:11:12.331Z'
                   des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                     a possimus impedit modi quia? Incidunt?
         '401':
@@ -121,6 +133,18 @@ paths:
           content:
             application/json:
               example:
+              - id: 496
+                name: Tour 10
+                city: Canada 10
+                price: '245.0'
+                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
+                status: false
+                user_id: 2041
+                created_at: '2023-06-22T07:11:12.394Z'
+                updated_at: '2023-06-22T07:11:12.399Z'
+                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+                  a possimus impedit modi quia? Incidunt?
+                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcHNCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7beb648bf5d3e1149a76a764d0fcaf455dd7319a/dominos.jpg"
               - id: 56
                 name: Obudu tour
                 city: Ibom
@@ -132,18 +156,6 @@ paths:
                 updated_at: '2023-06-20T14:00:22.085Z'
                 des: 
                 image_url: 
-              - id: 357
-                name: Tour 10
-                city: Canada 10
-                price: '245.0'
-                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                status: false
-                user_id: 1682
-                created_at: '2023-06-21T08:55:58.634Z'
-                updated_at: '2023-06-21T08:55:58.644Z'
-                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                  a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFlCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0d723a10a62c67d868a5bd2cf8a5346e2079533b/dominos.jpg"
     post:
       summary: Create tour
       tags:
@@ -159,15 +171,15 @@ paths:
           content:
             application/json:
               example:
-                id: 358
+                id: 497
                 name: Joyland
                 city: Lahore
                 price: '30.0'
                 video: This is the video
                 status: false
-                user_id: 1683
-                created_at: '2023-06-21T08:55:58.687Z'
-                updated_at: '2023-06-21T08:55:58.687Z'
+                user_id: 2042
+                created_at: '2023-06-22T07:11:12.422Z'
+                updated_at: '2023-06-22T07:11:12.422Z'
                 des: Just a small place to fun
         '400':
           description: Bad Request
@@ -195,40 +207,22 @@ paths:
               - city
               - price
               - des
-  "/tours-all":
+  "/my-tours":
     get:
-      summary: list all tours including removed tours
+      summary: list all tours created by user
       tags:
       - Tours
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: Successful
           content:
             application/json:
-              example:
-              - id: 56
-                name: Obudu tour
-                city: Ibom
-                price: '245.0'
-                video: Do it now or die regretting
-                status: false
-                user_id: 289
-                created_at: '2023-06-20T14:00:22.085Z'
-                updated_at: '2023-06-20T14:00:22.085Z'
-                des: 
-                image_url: 
-              - id: 359
-                name: Tour 11
-                city: Canada 11
-                price: '245.0'
-                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                status: false
-                user_id: 1686
-                created_at: '2023-06-21T08:55:58.723Z'
-                updated_at: '2023-06-21T08:55:58.728Z'
-                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                  a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaGNCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6bfc72b86e024c7929438628bdb88e1a7a973bbc/dominos.jpg"
+              example: []
   "/tours/{id}":
     get:
       summary: Show tour
@@ -251,15 +245,15 @@ paths:
           content:
             application/json:
               example:
-                id: 360
+                id: 499
                 name: Tour 12
                 city: Canada 12
                 price: '245.0'
                 video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
                 status: false
-                user_id: 1688
-                created_at: '2023-06-21T08:55:58.763Z'
-                updated_at: '2023-06-21T08:55:58.769Z'
+                user_id: 2047
+                created_at: '2023-06-22T07:11:12.463Z'
+                updated_at: '2023-06-22T07:11:12.467Z'
                 des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
                   a possimus impedit modi quia? Incidunt?
         '401':
@@ -335,7 +329,7 @@ paths:
           content:
             application/json:
               example:
-                id: 1695
+                id: 2054
                 name: user 32
                 email: user-test32@gmail.com
         '401':
