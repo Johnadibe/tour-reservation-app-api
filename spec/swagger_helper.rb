@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.configure do |config|
+RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
   # Specify a root folder where Swagger JSON files are generated
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
   # to ensure that it's configured to serve Swagger from the same folder
@@ -16,7 +16,7 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
+        title: 'TourX API V1',
         version: 'v1'
       },
       paths: {},
@@ -29,7 +29,16 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: :apiKey,
+            name: 'Authorization',
+            in: :header
+          }
+        }
+      }
     }
   }
 

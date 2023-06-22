@@ -1,4 +1,9 @@
-# tour-reservation-app-api
+<div align="center">
+  <h2><b>🕹️🕹️ Tour Reservation API 🕹️🕹️</b></h2>
+  <br/>
+  <img src="./public/logo.png" alt="logo" width="140"  height="auto" />
+  <br/>
+</div>
 
 <a name="readme-top"></a>
 
@@ -10,9 +15,11 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+  - [🚀 Link to Api Docs](#api-docs)
   - [🚀 Link to React Frontend](#front-end)
   - [🚀 Kaban Board](#Kaban-Board)
     - [Kaban Board Initial State](#initial-state)
+  - [ERD Diagram](#erd)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -47,6 +54,21 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Link to Api Documentation -->
+
+## 🚀 Link to Api Documentation <a name="api-docs"></a>
+
+To access the documentation, run the rails server using `rails s` and goto the above link
+
+- [Link to api-doc](https://localhost:3000/api-docs/)
+
+<br/> 
+
+![image](https://github.com/Johnadibe/tour-reservation-app-api/assets/43586022/23a9e0e4-6128-4949-82cf-0990ae9a84f0)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- Link to frontend -->
 
 ## 🚀 Link to Front-end <a name="front-end"></a>
@@ -69,6 +91,16 @@ In this team, we are 4 in number,
 - @Donmark2k
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 🚀 ERD Diagram <a name="erd"></a>
+
+<br/>
+
+![image](https://github.com/Johnadibe/tour-reservation-app-api/assets/43586022/c5ec88f2-d13b-47fc-900a-d5f26fb32757)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- GETTING STARTED -->
 

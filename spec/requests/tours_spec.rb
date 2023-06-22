@@ -34,7 +34,7 @@ RSpec.describe 'Tours', type: :request do
       tags 'Tours'
       produces 'application/json'
       consumes 'application/json'
-      parameter name: :Authorization, in: :header, type: :string
+      security [bearerAuth: []]
       parameter name: :params, in: :body, schema: {
         type: :object,
         properties: { name: { type: :string }, city: { type: :string }, price: { type: :integer },
@@ -66,7 +66,7 @@ RSpec.describe 'Tours', type: :request do
     get 'list all tours created by user' do
       tags 'Tours'
       produces 'application/json'
-      parameter name: :Authorization, in: :header, type: :string
+      security [bearerAuth: []]
       let!(:tour) { create :tour }
       response '200', 'Successful' do
         after do |example|
@@ -91,7 +91,7 @@ RSpec.describe 'Tours', type: :request do
       produces 'application/json'
       tags 'Tours'
       parameter name: 'id', in: :path, type: :string, description: 'id'
-      parameter name: :Authorization, in: :header, type: :string
+      security [bearerAuth: []]
       let!(:tour) { create :tour }
       response(200, 'Successful') do
         let(:id) { tour.id }

@@ -48,9 +48,11 @@ RSpec.describe User, type: :request do
         },
         required: %w[email password]
       }
+
       response '200', 'user authenticated' do
         # login credentials
-        let(:user) { { email: 'test2@gmail.com', password: '123456' } }
+
+        let(:user) { { email: user1.email, password: user1.password } }
 
         run_test! do |response|
           data = JSON.parse(response.body)
@@ -76,8 +78,8 @@ RSpec.describe User, type: :request do
     get('Get user by id') do
       produces 'application/json'
       tags 'Users'
+      security [bearerAuth: []]
       parameter name: 'id', in: :path, type: :string, description: 'id'
-      parameter name: :Authorization, in: :header, type: :string
       response(200, 'Successful') do
         let(:id) { user1.id }
 

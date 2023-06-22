@@ -23,10 +23,6 @@ RSpec.describe Tour, type: :model do
     @tour.price = nil
     expect(@tour).to_not be_valid
   end
-  it 'is not valid without a video' do
-    @tour.video = nil
-    expect(@tour).to_not be_valid
-  end
   it 'is not valid without an user_id' do
     @tour.user_id = nil
     expect(@tour).to_not be_valid

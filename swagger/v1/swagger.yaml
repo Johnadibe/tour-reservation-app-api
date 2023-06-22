@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
+  title: TourX API V1
   version: v1
 paths:
   "/reservations":
@@ -9,53 +9,23 @@ paths:
       summary: list reservations
       tags:
       - Reservations
-      parameters:
-      - name: Authorization
-        in: header
-        schema:
-          type: string
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example: []
         '401':
           description: Unauthorized
     post:
       summary: Create reservations
       tags:
       - Reservations
-      parameters:
-      - name: Authorization
-        in: header
-        schema:
-          type: string
+      security:
+      - bearerAuth: []
+      parameters: []
       responses:
         '201':
           description: successful
-          content:
-            application/json:
-              example:
-                id: 155
-                start_date: '2023-01-16'
-                end_date: '2023-01-16'
-                user_id: 2028
-                tour_id: 490
-                created_at: '2023-06-22T07:11:12.286Z'
-                updated_at: '2023-06-22T07:11:12.286Z'
-                tour:
-                  id: 490
-                  name: Tour 4
-                  city: Canada 4
-                  price: '245.0'
-                  video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                  status: false
-                  user_id: 2029
-                  created_at: '2023-06-22T07:11:12.273Z'
-                  updated_at: '2023-06-22T07:11:12.278Z'
-                  des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                    a possimus impedit modi quia? Incidunt?
         '400':
           description: Bad Request
       requestBody:
@@ -91,35 +61,11 @@ paths:
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        schema:
-          type: string
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-                id: 156
-                start_date: '2023-02-12'
-                end_date: '2023-04-13'
-                user_id: 2034
-                tour_id: 493
-                created_at: '2023-06-22T07:11:12.333Z'
-                updated_at: '2023-06-22T07:11:12.333Z'
-                tour:
-                  id: 493
-                  name: Tour 7
-                  city: Canada 7
-                  price: '245.0'
-                  video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                  status: false
-                  user_id: 2035
-                  created_at: '2023-06-22T07:11:12.326Z'
-                  updated_at: '2023-06-22T07:11:12.331Z'
-                  des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                    a possimus impedit modi quia? Incidunt?
         '401':
           description: Unauthorized
   "/tours":
@@ -130,57 +76,16 @@ paths:
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-              - id: 496
-                name: Tour 10
-                city: Canada 10
-                price: '245.0'
-                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                status: false
-                user_id: 2041
-                created_at: '2023-06-22T07:11:12.394Z'
-                updated_at: '2023-06-22T07:11:12.399Z'
-                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                  a possimus impedit modi quia? Incidunt?
-                image_url: "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcHNCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7beb648bf5d3e1149a76a764d0fcaf455dd7319a/dominos.jpg"
-              - id: 56
-                name: Obudu tour
-                city: Ibom
-                price: '245.0'
-                video: Do it now or die regretting
-                status: false
-                user_id: 289
-                created_at: '2023-06-20T14:00:22.085Z'
-                updated_at: '2023-06-20T14:00:22.085Z'
-                des: 
-                image_url: 
     post:
       summary: Create tour
       tags:
       - Tours
-      parameters:
-      - name: Authorization
-        in: header
-        schema:
-          type: string
+      security:
+      - bearerAuth: []
+      parameters: []
       responses:
         '201':
           description: successful
-          content:
-            application/json:
-              example:
-                id: 497
-                name: Joyland
-                city: Lahore
-                price: '30.0'
-                video: This is the video
-                status: false
-                user_id: 2042
-                created_at: '2023-06-22T07:11:12.422Z'
-                updated_at: '2023-06-22T07:11:12.422Z'
-                des: Just a small place to fun
         '400':
           description: Bad Request
       requestBody:
@@ -212,17 +117,11 @@ paths:
       summary: list all tours created by user
       tags:
       - Tours
-      parameters:
-      - name: Authorization
-        in: header
-        schema:
-          type: string
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example: []
   "/tours/{id}":
     get:
       summary: Show tour
@@ -235,27 +134,11 @@ paths:
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        schema:
-          type: string
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-                id: 499
-                name: Tour 12
-                city: Canada 12
-                price: '245.0'
-                video: https://www.youtube.com/watch?v=XxuPlSW4t6M&list=PLCawOXF4xaJLb9HwPWiizGBNupJszY6bR
-                status: false
-                user_id: 2047
-                created_at: '2023-06-22T07:11:12.463Z'
-                updated_at: '2023-06-22T07:11:12.467Z'
-                des: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                  a possimus impedit modi quia? Incidunt?
         '401':
           description: Unauthorized
   "/users":
@@ -312,6 +195,8 @@ paths:
       summary: Get user by id
       tags:
       - Users
+      security:
+      - bearerAuth: []
       parameters:
       - name: id
         in: path
@@ -319,19 +204,9 @@ paths:
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        schema:
-          type: string
       responses:
         '200':
           description: Successful
-          content:
-            application/json:
-              example:
-                id: 2054
-                name: user 32
-                email: user-test32@gmail.com
         '401':
           description: Unauthorized
 servers:
@@ -339,3 +214,9 @@ servers:
   variables:
     defaultHost:
       default: localhost:3000/api/v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: apiKey
+      name: Authorization
+      in: header
