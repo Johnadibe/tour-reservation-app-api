@@ -48,9 +48,11 @@ RSpec.describe User, type: :request do
         },
         required: %w[email password]
       }
+      
       response '200', 'user authenticated' do
         # login credentials
-        let(:user) { { email: 'test2@gmail.com', password: '123456' } }
+        
+        let(:user) { { email: user1.email, password: user1.password } }
 
         run_test! do |response|
           data = JSON.parse(response.body)
