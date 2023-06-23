@@ -5,7 +5,9 @@ class ApplicationController < ActionController::API
 
   def user_id
     token = request.headers['Authorization']&.split(' ')&.last
+    p token
     decode = decoded_token(token)
+    p decode.first['user_id']
     decode.first['user_id']
   end
 

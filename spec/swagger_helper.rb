@@ -22,10 +22,10 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
       paths: {},
       servers: [
         {
-          url: 'http://{defaultHost}',
+          url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'localhost:3000/api/v1'
+              default: 'tourx-api.onrender.com/api/v1'
             }
           }
         }
